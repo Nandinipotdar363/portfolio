@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nandini Potdar — IoT & Embedded Systems Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:      #f7f9fc;
+  --white:   #ffffff;
+  --navy:    #0d2137;
+  --teal:    #0a7c6e;
+  --teal-l:  #0fa898;
+  --teal-bg: #e8f5f4;
+  --steel:   #1e4d6b;
+  --amber:   #c07000;
+  --amber-bg:#fff7e8;
+  --ink:     #1a2535;
+  --muted:   #5a6a7a;
+  --border:  #dde4ec;
+  --shadow:  0 4px 24px rgba(13,33,55,0.08);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,33,55,0.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.08);padding:0 6vw;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-family:'Libre Baskerville',serif;font-size:1.1rem;color:var(--teal-l);font-weight:700;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{color:rgba(255,255,255,0.55);text-decoration:none;font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s;}
+.nav-links a:hover{color:var(--teal-l);}
+
+/* HERO */
+.hero{min-height:100vh;padding-top:60px;background:linear-gradient(160deg,var(--navy) 0%,var(--steel) 60%,#1a3a4a 100%);display:grid;grid-template-columns:1.15fr 0.85fr;align-items:center;gap:3rem;padding-left:8vw;padding-right:8vw;position:relative;overflow:hidden;}
+
+/* grid pattern */
+.hero-grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(10,168,152,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(10,168,152,0.05) 1px,transparent 1px);background-size:50px 50px;}
+.hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(10,168,152,0.08),transparent 70%);top:-100px;right:-100px;pointer-events:none;}
+
+.hero-left{position:relative;z-index:1;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:0.6rem;background:rgba(10,168,152,0.12);border:1px solid rgba(10,168,152,0.25);color:var(--teal-l);font-size:0.68rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:0.38rem 1rem;border-radius:4px;margin-bottom:1.5rem;font-family:'JetBrains Mono',monospace;opacity:1;animation:fadeUp 0.7s 0.2s forwards;}
+.hero-name{font-family:'Libre Baskerville',serif;font-size:clamp(2.5rem,4.5vw,4.8rem);font-weight:700;line-height:1.05;color:white;margin-bottom:0.5rem;opacity:1;animation:fadeUp 0.7s 0.4s forwards;}
+.hero-name em{color:var(--teal-l);font-style:italic;display:block;}
+.hero-role{font-size:0.95rem;color:rgba(255,255,255,0.5);margin-bottom:2rem;font-weight:300;letter-spacing:0.04em;opacity:1;animation:fadeUp 0.7s 0.6s forwards;}
+.hero-pitch{font-size:0.92rem;line-height:1.85;color:rgba(255,255,255,0.8);border-left:3px solid var(--teal-l);padding-left:1.25rem;max-width:460px;margin-bottom:2.5rem;opacity:1;animation:fadeUp 0.7s 0.8s forwards;}
+.hero-chips{display:flex;flex-wrap:wrap;gap:0.5rem;opacity:1;animation:fadeUp 0.7s 1.0s forwards;}
+.chip{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.75);font-size:0.7rem;font-weight:500;padding:0.32rem 0.8rem;border-radius:4px;transition:all 0.2s;cursor:default;font-family:'JetBrains Mono',monospace;}
+.chip:hover{background:rgba(10,168,152,0.15);border-color:var(--teal-l);color:var(--teal-l);}
+.chip.amber{border-color:rgba(192,112,0,0.35);color:#e8a030;}
+.chip.amber:hover{background:rgba(192,112,0,0.1);}
+
+/* HUD PANELS */
+.hero-right{display:flex;flex-direction:column;gap:0.9rem;opacity:1;animation:fadeIn 1s 1s forwards;position:relative;z-index:1;}
+.hud{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);padding:1.25rem 1.5rem;position:relative;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%);}
+.hud::after{content:'';position:absolute;top:0;right:0;width:12px;height:12px;background:linear-gradient(225deg,var(--teal-l) 50%,transparent 50%);opacity:0.5;}
+.hud-label{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--teal-l);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:0.4rem;opacity:0.7;}
+.hud-val{font-family:'Libre Baskerville',serif;font-size:2rem;color:white;font-weight:700;line-height:1;}
+.hud-val.teal{color:var(--teal-l);}
+.hud-val.amber{color:#e8a030;font-size:1.25rem;}
+.hud-sub{font-size:0.7rem;color:rgba(255,255,255,0.4);margin-top:0.28rem;}
+.hud-bar{height:2px;background:rgba(255,255,255,0.08);margin-top:0.65rem;overflow:hidden;}
+.hud-bar-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--teal-l));animation:barLoad 2s ease forwards;}
+@keyframes barLoad{from{width:0}}
+
+/* SECTIONS */
+section{padding:5rem 8vw;position:relative;}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:0.68rem;letter-spacing:0.2em;color:var(--teal);text-transform:uppercase;margin-bottom:0.55rem;display:flex;align-items:center;gap:0.6rem;}
+.eyebrow::before{content:'';width:20px;height:2px;background:var(--teal);}
+.sec-title{font-family:'Libre Baskerville',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:0.7rem;}
+.sec-title span{color:var(--teal);}
+.sec-sub{font-size:0.92rem;color:var(--muted);line-height:1.75;max-width:580px;margin-bottom:2.75rem;}
+.divider{height:1px;background:linear-gradient(90deg,var(--teal),transparent);opacity:0.25;margin-bottom:2.75rem;}
+
+/* WHY FIT */
+.fit-dark{background:var(--navy);color:white;padding:5rem 8vw;}
+.fit-dark .sec-title{color:white;}
+.fit-dark .eyebrow{color:var(--teal-l);}
+.fit-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem;margin-top:0.5rem;}
+.fit-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:1.6rem;position:relative;transition:all 0.3s;}
+.fit-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--teal-l),var(--teal));}
+.fit-card:hover{border-color:rgba(10,168,152,0.3);background:rgba(10,168,152,0.04);}
+.fit-req{font-family:'JetBrains Mono',monospace;font-size:0.66rem;color:rgba(255,255,255,0.4);margin-bottom:0.42rem;letter-spacing:0.06em;}
+.fit-ans{font-size:0.87rem;color:rgba(255,255,255,0.85);line-height:1.6;}
+.fit-ans strong{color:var(--teal-l);}
+.fit-check{position:absolute;top:0.9rem;right:0.9rem;color:var(--teal-l);font-size:0.8rem;font-family:'JetBrains Mono',monospace;}
+
+/* INTERNSHIPS */
+.intern-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;}
+.intern-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:1.85rem;position:relative;overflow:hidden;transition:all 0.3s;box-shadow:var(--shadow);}
+.intern-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--teal),var(--teal-l));}
+.intern-card:hover{transform:translateY(-4px);box-shadow:0 12px 35px rgba(13,33,55,0.1);}
+.intern-badges{display:flex;gap:0.45rem;flex-wrap:wrap;margin-bottom:0.85rem;}
+.ibadge{background:var(--teal-bg);color:var(--teal);font-size:0.6rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.2rem 0.65rem;border-radius:4px;}
+.ibadge.award{background:var(--amber-bg);color:var(--amber);}
+.intern-co{font-family:'Libre Baskerville',serif;font-size:1.05rem;color:var(--navy);font-weight:700;margin-bottom:0.22rem;}
+.intern-role{font-size:0.76rem;color:var(--teal);font-weight:600;margin-bottom:0.2rem;}
+.intern-date{font-family:'JetBrains Mono',monospace;font-size:0.67rem;color:var(--muted);margin-bottom:0.9rem;}
+.ipoints{list-style:none;display:flex;flex-direction:column;gap:0.42rem;}
+.ipoints li{font-size:0.8rem;color:#3a4a5a;line-height:1.65;padding-left:1rem;position:relative;}
+.ipoints li::before{content:'▸';position:absolute;left:0;color:var(--teal);font-size:0.65rem;}
+.ipoints li.hi{color:var(--amber);}
+.ipoints li.hi::before{color:var(--amber);}
+.ilink{display:inline-block;margin-top:0.85rem;font-family:'JetBrains Mono',monospace;font-size:0.63rem;color:var(--teal);text-decoration:none;border-bottom:1px solid rgba(10,120,110,0.3);padding-bottom:2px;letter-spacing:0.06em;transition:color 0.2s;}
+.ilink:hover{color:var(--navy);}
+
+/* PROJECTS */
+.proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem;}
+.proj-card{background:var(--white);border:1px solid var(--border);padding:1.75rem;border-radius:16px;transition:all 0.3s;box-shadow:var(--shadow);}
+.proj-card:hover{transform:translateY(-4px);border-color:var(--teal);box-shadow:0 12px 35px rgba(10,120,110,0.1);}
+.proj-num{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--teal);opacity:0.55;margin-bottom:0.7rem;letter-spacing:0.14em;}
+.proj-icon{font-size:1.8rem;margin-bottom:0.75rem;}
+.proj-title{font-family:'Libre Baskerville',serif;font-size:1.0rem;color:var(--navy);margin-bottom:0.6rem;font-weight:700;line-height:1.3;}
+.proj-stack{display:flex;flex-wrap:wrap;gap:0.32rem;margin-bottom:0.75rem;}
+.ptag{background:var(--teal-bg);color:var(--teal);font-size:0.62rem;font-weight:600;padding:0.18rem 0.55rem;border-radius:4px;}
+.proj-desc{font-size:0.8rem;color:var(--muted);line-height:1.7;margin-bottom:0.75rem;}
+.proj-relevance{font-size:0.75rem;color:var(--teal);font-style:italic;padding-top:0.75rem;border-top:1px solid var(--border);}
+
+/* SKILLS */
+.skills-bg{background:linear-gradient(160deg,#f0f8f7 0%,var(--bg) 100%);}
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+.sk-group{margin-bottom:1.75rem;}
+.sk-group-title{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--teal);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1rem;padding-bottom:0.4rem;border-bottom:1px solid var(--border);}
+.sk-row{display:flex;align-items:center;gap:1rem;margin-bottom:0.72rem;}
+.sk-name{font-size:0.8rem;color:var(--ink);min-width:140px;font-weight:500;}
+.sk-track{flex:1;height:5px;background:var(--border);border-radius:10px;overflow:hidden;}
+.sk-fill{height:100%;border-radius:10px;}
+.sk-fill.teal{background:linear-gradient(90deg,var(--teal),var(--teal-l));}
+.sk-fill.steel{background:linear-gradient(90deg,var(--steel),#2a6a9a);}
+.sk-fill.amber{background:linear-gradient(90deg,#a06000,var(--amber));}
+.sk-pct{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);min-width:30px;text-align:right;}
+
+/* CTA */
+.cta{background:linear-gradient(150deg,var(--teal) 0%,var(--navy) 100%);text-align:center;padding:6rem 8vw;position:relative;overflow:hidden;}
+.cta::before{content:'';position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.05),transparent);top:-150px;right:-150px;pointer-events:none;}
+.cta h2{font-family:'Libre Baskerville',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);color:white;margin-bottom:1rem;position:relative;font-style:italic;}
+.cta p{font-size:0.92rem;color:rgba(255,255,255,0.65);max-width:480px;margin:0 auto 2.5rem;line-height:1.75;position:relative;}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative;}
+.btn-main{background:white;color:var(--teal);padding:0.88rem 2.4rem;font-size:0.82rem;font-weight:700;border:none;border-radius:6px;text-decoration:none;display:inline-block;transition:all 0.25s;box-shadow:0 6px 24px rgba(0,0,0,0.2);}
+.btn-main:hover{background:var(--teal-bg);transform:translateY(-2px);}
+.btn-outline{background:transparent;color:white;padding:0.88rem 2.4rem;font-size:0.82rem;font-weight:600;border:1.5px solid rgba(255,255,255,0.3);border-radius:6px;text-decoration:none;display:inline-block;transition:all 0.25s;}
+.btn-outline:hover{border-color:white;background:rgba(255,255,255,0.07);}
+.contact-row{display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;margin-top:2rem;font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:rgba(255,255,255,0.45);position:relative;}
+.contact-row a{color:rgba(255,255,255,0.65);text-decoration:none;transition:color 0.2s;}
+.contact-row a:hover{color:white;}
+
+footer{background:var(--navy);text-align:center;padding:1.4rem;font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:rgba(255,255,255,0.2);letter-spacing:0.08em;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.reveal{opacity:1;transform:translateY(0);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+.scroll-cue{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.3);font-size:0.66rem;letter-spacing:0.12em;text-transform:uppercase;animation:float 2.5s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+@media(max-width:900px){
+  .hero,.fit-grid,.intern-grid,.proj-grid,.skills-grid{grid-template-columns:1fr;}
+  .hero-right{flex-direction:row;flex-wrap:wrap;}
+  .hud{flex:1;min-width:140px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Nandini Potdar</div>
+  <ul class="nav-links">
+    <li><a href="#fit">Why Hiotron</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="about">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+
+  <div class="hero-left">
+    <div class="hero-eyebrow">IoT · Embedded Systems · Field Engineering · Industry 4.0</div>
+    <h1 class="hero-name">Nandini<em>Potdar</em></h1>
+    <p class="hero-role">B.Tech Electronics & Telecom · Shivaji University 2025 · +91 9960683495</p>
+    <p class="hero-pitch">
+      I build and troubleshoot hardware systems, integrate sensors and IoT devices, and communicate technical solutions clearly to any audience. Field-ready, travel-ready, and genuinely excited about Industry 4.0.
+    </p>
+    <div class="hero-chips">
+      <span class="chip">IoT & Sensors</span>
+      <span class="chip">ESP32 / Arduino</span>
+      <span class="chip">Embedded C/C++</span>
+      <span class="chip">PCB Design</span>
+      <span class="chip">Hardware Troubleshooting</span>
+      <span class="chip">Python</span>
+      <span class="chip amber">🏆 Best Performer</span>
+      <span class="chip amber">🏅 SIH Grand Finalist</span>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hud">
+      <div class="hud-label">// Academic Performance</div>
+      <div class="hud-val teal">7.76</div>
+      <div class="hud-sub">CGPA — Shivaji University, Kolhapur</div>
+      <div class="hud-bar"><div class="hud-bar-fill" style="width:77.6%"></div></div>
+    </div>
+    <div class="hud">
+      <div class="hud-label">// Internship Award</div>
+      <div class="hud-val amber">🏆 Best Performer</div>
+      <div class="hud-sub">Elevate Labs AI/ML Internship · 2025</div>
+    </div>
+    <div class="hud">
+      <div class="hud-label">// Competition</div>
+      <div class="hud-val" style="font-size:1.2rem;color:white">Grand Finalist</div>
+      <div class="hud-sub">Smart India Hackathon 2024 — National Level</div>
+      <div class="hud-bar"><div class="hud-bar-fill" style="width:100%"></div></div>
+    </div>
+    <div class="hud">
+      <div class="hud-label">// Hardware Projects</div>
+      <div class="hud-val teal">04</div>
+      <div class="hud-sub">IoT · Robotics · FPGA · PCB Design</div>
+    </div>
+    <div class="hud" style="border-color:rgba(10,168,152,0.3)">
+      <div class="hud-label" style="color:var(--teal-l)">// Availability</div>
+      <div class="hud-val" style="font-size:1.0rem;color:white">IMMEDIATE</div>
+      <div class="hud-sub">Full-Time · Pune · Travel Ready 🚗</div>
+    </div>
+  </div>
+
+  <div class="scroll-cue">
+    <span>Scroll</span>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+</div>
+
+<!-- WHY HIOTRON FIT -->
+<div class="fit-dark" id="fit">
+  <div class="reveal">
+    <p class="eyebrow">Role Match</p>
+    <h2 class="sec-title">Why I Fit <span>Hiotron</span></h2>
+    <p style="color:rgba(255,255,255,0.5);font-size:0.9rem;max-width:560px;line-height:1.75;margin-bottom:2.75rem;">Every requirement in the Service & Support Trainee JD — matched to real experience from my work.</p>
+  </div>
+  <div class="fit-grid reveal">
+    <div class="fit-card">
+      <div class="fit-check">✓</div>
+      <div class="fit-req">JD: "Degree in Electronics / E&TC"</div>
+      <div class="fit-ans"><strong>B.Tech ECE 2025</strong> — Shivaji University. Hands-on curriculum covering circuits, sensors, embedded systems and signal processing.</div>
+    </div>
+    <div class="fit-card">
+      <div class="fit-check">✓</div>
+      <div class="fit-req">JD: "Basic wiring, sensors, multimeters"</div>
+      <div class="fit-ans"><strong>Hardware internship at Telematic Interactive</strong> — worked on CCTV, biometric systems, EPABX and fire alarms. Performed real wiring and fault identification.</div>
+    </div>
+    <div class="fit-card">
+      <div class="fit-check">✓</div>
+      <div class="fit-req">JD: "IoT Gateway & Sensor installation"</div>
+      <div class="fit-ans"><strong>Built ESP32 IoT robotic arm</strong> with sensor feedback and Wi-Fi integration. Understands how IoT devices communicate and are configured end-to-end.</div>
+    </div>
+    <div class="fit-card">
+      <div class="fit-check">✓</div>
+      <div class="fit-req">JD: "Troubleshoot hardware on-site"</div>
+      <div class="fit-ans"><strong>Debugged embedded hardware</strong> across 4 real projects. Identified and fixed issues in live systems under time pressure — including during SIH evaluation.</div>
+    </div>
+    <div class="fit-card">
+      <div class="fit-check">✓</div>
+      <div class="fit-req">JD: "Train operators on dashboard"</div>
+      <div class="fit-ans"><strong>Presented to national jury at SIH 2024</strong>. Explained complex technical systems in simple terms. Comfortable training non-technical users clearly.</div>
+    </div>
+    <div class="fit-card">
+      <div class="fit-check">✓</div>
+      <div class="fit-req">JD: "Good communication & travel readiness"</div>
+      <div class="fit-ans"><strong>Trilingual</strong> — English, Hindi, Marathi. Open to travel across Pune, NCR, Bangalore, Chennai and Coimbatore. Immediately available.</div>
+    </div>
+  </div>
+</div>
+
+<!-- INTERNSHIPS -->
+<section id="experience">
+  <div class="reveal">
+    <p class="eyebrow">Work Experience</p>
+    <h2 class="sec-title">Internship <span>Experience</span></h2>
+    <p class="sec-sub">Two real internships — hardware systems and AI/ML. Real environments, real problems, real growth.</p>
+    <div class="divider"></div>
+  </div>
+  <div class="intern-grid reveal">
+    <div class="intern-card">
+      <div class="intern-badges">
+        <span class="ibadge">Hardware Internship</span>
+      </div>
+      <div class="intern-co">Telematic Interactive Pvt. Ltd.</div>
+      <div class="intern-role">Engineering Intern</div>
+      <div class="intern-date">1 Month · Electronic Communication & Security Systems</div>
+      <ul class="ipoints">
+        <li>Hands-on exposure to EPABX, CCTV, wireless systems, biometric access control and fire alarm systems.</li>
+        <li>Performed wiring, fault identification and first-level troubleshooting under industry supervision.</li>
+        <li>Observed industry-standard installation and safety practices in live commercial environments.</li>
+        <li>Direct experience of the field service workflow — exactly what Hiotron needs at client sites.</li>
+      </ul>
+      <a href="https://www.telematicinteractive.co.in/" target="_blank" class="ilink">↗ telematicinteractive.co.in</a>
+    </div>
+    <div class="intern-card">
+      <div class="intern-badges">
+        <span class="ibadge">AI / ML Internship</span>
+        <span class="ibadge award">🏆 Best Performer</span>
+      </div>
+      <div class="intern-co">Elevate Labs</div>
+      <div class="intern-role">AI/ML Intern</div>
+      <div class="intern-date">Jun 2025 – Jul 2025 · Remote</div>
+      <ul class="ipoints">
+        <li>Worked on real-world AI/ML tasks — data preprocessing, model training and evaluation using Python.</li>
+        <li>Applied analytical techniques to improve model performance across multiple tasks.</li>
+        <li>Maintained documentation and collaborated effectively in a remote environment.</li>
+        <li class="hi">🏆 Awarded Best Performer Certificate for outstanding quality and consistency.</li>
+      </ul>
+      <a href="https://elevatelabs.in/" target="_blank" class="ilink">↗ elevatelabs.in</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" style="background:var(--bg)">
+  <div class="reveal">
+    <p class="eyebrow">Hardware Projects</p>
+    <h2 class="sec-title">Real Systems <span>I Built</span></h2>
+    <p class="sec-sub">Four real hardware and software projects — each one directly relevant to industrial IoT and field engineering work.</p>
+    <div class="divider"></div>
+  </div>
+  <div class="proj-grid reveal">
+    <div class="proj-card">
+      <div class="proj-num">PROJECT_01 // IoT · ROBOTICS</div>
+      <div class="proj-icon">🦾</div>
+      <div class="proj-title">Wi-Fi Controlled Robotic Arm with Sensor Feedback</div>
+      <div class="proj-stack"><span class="ptag">ESP32</span><span class="ptag">IoT</span><span class="ptag">Embedded C++</span><span class="ptag">Sensors</span><span class="ptag">Web Interface</span></div>
+      <div class="proj-desc">Built a complete IoT system — from hardware wiring to Wi-Fi communication to real-time sensor feedback. End-to-end embedded development with actual field testing.</div>
+      <div class="proj-relevance">→ Directly mirrors Hiotron's IoT gateway + sensor integration work at client sites</div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-num">PROJECT_02 // EDGE AI · FPGA</div>
+      <div class="proj-icon">🤖</div>
+      <div class="proj-title">FPGA Object Detection System — Edge AI</div>
+      <div class="proj-stack"><span class="ptag">ZCU104 FPGA</span><span class="ptag">YOLOv8</span><span class="ptag">Python</span><span class="ptag">PYNQ</span><span class="ptag">Edge Computing</span></div>
+      <div class="proj-desc">Deployed AI on embedded hardware — no cloud, no GPU. Optimised real-time pipeline for near instant inference. Demonstrates advanced embedded systems thinking.</div>
+      <div class="proj-relevance">→ Relevant to Hiotron's AI & Edge Intelligence products for smart manufacturing</div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-num">PROJECT_03 // SIGNAL PROCESSING · SIH 2024</div>
+      <div class="proj-icon">📡</div>
+      <div class="proj-title">Real-Time Gunshot Detection System</div>
+      <div class="proj-stack"><span class="ptag">Python</span><span class="ptag">TDOA</span><span class="ptag">Microphone Arrays</span><span class="ptag">Signal Processing</span></div>
+      <div class="proj-desc">Built acoustic detection using microphone arrays with TDOA localization. Tested live under pressure at SIH Grand Finals — adapted to hardware failure in real time.</div>
+      <div class="proj-relevance">→ Shows ability to troubleshoot and adapt when systems fail in live environments</div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-num">PROJECT_04 // PCB DESIGN</div>
+      <div class="proj-icon">⚡</div>
+      <div class="proj-title">PCB Design — 12V Linear Regulator Power Supply</div>
+      <div class="proj-stack"><span class="ptag">KiCad</span><span class="ptag">LM7812</span><span class="ptag">Schematic</span><span class="ptag">PCB Layout</span><span class="ptag">ERC/DRC</span></div>
+      <div class="proj-desc">Complete PCB from schematic to manufacturing-ready layout. ERC and DRC verified. Demonstrates understanding of real hardware design from concept to production.</div>
+      <div class="proj-relevance">→ Hardware design experience relevant to working with Hiotron's proprietary edge hardware</div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="skills-bg">
+  <div class="reveal">
+    <p class="eyebrow">Technical Skills</p>
+    <h2 class="sec-title">What I Bring to <span>Every Site</span></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="skills-grid reveal">
+    <div>
+      <div class="sk-group">
+        <div class="sk-group-title">// Embedded & Hardware</div>
+        <div class="sk-row"><span class="sk-name">Embedded C / C++</span><div class="sk-track"><div class="sk-fill teal" style="width:88%"></div></div><span class="sk-pct">88%</span></div>
+        <div class="sk-row"><span class="sk-name">ESP32 / Arduino</span><div class="sk-track"><div class="sk-fill teal" style="width:92%"></div></div><span class="sk-pct">92%</span></div>
+        <div class="sk-row"><span class="sk-name">Sensors & Actuators</span><div class="sk-track"><div class="sk-fill teal" style="width:88%"></div></div><span class="sk-pct">88%</span></div>
+        <div class="sk-row"><span class="sk-name">PCB Design (KiCad)</span><div class="sk-track"><div class="sk-fill teal" style="width:72%"></div></div><span class="sk-pct">72%</span></div>
+        <div class="sk-row"><span class="sk-name">Circuit Troubleshooting</span><div class="sk-track"><div class="sk-fill teal" style="width:80%"></div></div><span class="sk-pct">80%</span></div>
+      </div>
+      <div class="sk-group">
+        <div class="sk-group-title">// Field & Service</div>
+        <div class="sk-row"><span class="sk-name">Hardware Installation</span><div class="sk-track"><div class="sk-fill steel" style="width:78%"></div></div><span class="sk-pct">78%</span></div>
+        <div class="sk-row"><span class="sk-name">Fault Identification</span><div class="sk-track"><div class="sk-fill steel" style="width:80%"></div></div><span class="sk-pct">80%</span></div>
+        <div class="sk-row"><span class="sk-name">Client Communication</span><div class="sk-track"><div class="sk-fill steel" style="width:85%"></div></div><span class="sk-pct">85%</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="sk-group">
+        <div class="sk-group-title">// Software & AI</div>
+        <div class="sk-row"><span class="sk-name">Python</span><div class="sk-track"><div class="sk-fill amber" style="width:85%"></div></div><span class="sk-pct">85%</span></div>
+        <div class="sk-row"><span class="sk-name">FPGA / Edge AI</span><div class="sk-track"><div class="sk-fill amber" style="width:75%"></div></div><span class="sk-pct">75%</span></div>
+        <div class="sk-row"><span class="sk-name">ML Model Training</span><div class="sk-track"><div class="sk-fill amber" style="width:70%"></div></div><span class="sk-pct">70%</span></div>
+        <div class="sk-row"><span class="sk-name">Signal Processing</span><div class="sk-track"><div class="sk-fill amber" style="width:78%"></div></div><span class="sk-pct">78%</span></div>
+      </div>
+      <div class="sk-group">
+        <div class="sk-group-title">// Communication</div>
+        <div class="sk-row"><span class="sk-name">English</span><div class="sk-track"><div class="sk-fill teal" style="width:90%"></div></div><span class="sk-pct">90%</span></div>
+        <div class="sk-row"><span class="sk-name">Hindi</span><div class="sk-track"><div class="sk-fill teal" style="width:95%"></div></div><span class="sk-pct">95%</span></div>
+        <div class="sk-row"><span class="sk-name">Marathi</span><div class="sk-track"><div class="sk-fill teal" style="width:100%"></div></div><span class="sk-pct">Native</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+  <h2>Ready to be your field engineer.</h2>
+  <p>Hardware experience. IoT knowledge. Strong communication. Immediately available. Let's talk about how I can support Hiotron's clients from Day 1.</p>
+  <div class="cta-btns">
+    <a href="/cdn-cgi/l/email-protection#533d323d373a3d3a233c27373221666313343e323a3f7d303c3e" class="btn-main">📧 Contact Me</a>
+    <a href="https://www.linkedin.com/in/nandini-potdar-567469230" target="_blank" class="btn-outline">LinkedIn</a>
+    <a href="https://github.com/Nandinipotdar363" target="_blank" class="btn-outline">GitHub</a>
+  </div>
+  <div class="contact-row">
+    <span>📞 <a href="tel:+919960683495">+91 9960683495</a></span>
+    <span>📧 <a href="/cdn-cgi/l/email-protection#187679767c71767168776c7c796a2d28587f75797174367b7775"><span class="__cf_email__" data-cfemail="f7999699939e999e879883939685c2c7b7909a969e9bd994989a">[email&#160;protected]</span></a></span>
+    <span>📍 Latur, Maharashtra – 413522</span>
+  </div>
+</section>
+
+<footer>NANDINI POTDAR · IoT & EMBEDDED SYSTEMS ENGINEER · 2025 · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f39d929d979a9d9a839c87979281c6c3b3949e929a9fdd909c9e">[email&#160;protected]</a></footer>
+
+<script data-cfasync="false" src="/cdn-cgi/s
